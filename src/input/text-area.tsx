@@ -1,5 +1,5 @@
 import { h, Ref } from "preact";
-import { forwardRef } from "preact/compat";
+import { forwardElementRef } from "../forward-element-ref";
 import { usePendingMode } from "../pending-mode";
 import { InputPropsForAnyType, TextareaAttributes } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
@@ -13,7 +13,7 @@ export interface TextAreaProps extends InputPropsForAnyType<string, HTMLTextArea
 }
 
 
-function TextAreaWF(p: TextAreaProps, ref: Ref<HTMLTextAreaElement>) {
+export const TextArea = forwardElementRef(function TextArea(p: TextAreaProps, ref: Ref<HTMLTextAreaElement>) {
     let { id, value, onInput: userOnInput, disabled, readOnly, childrenPost, childrenPre, hasFocus, ...props } = useHasFocus(p);
 
 
@@ -47,11 +47,9 @@ function TextAreaWF(p: TextAreaProps, ref: Ref<HTMLTextAreaElement>) {
             </ProvideAsyncHandlerInfo>
         </ProvideId>
     )
-}
+});
 
 function convertEvent({ target }: Event) {
     const value = (target as HTMLInputElement).value;
     return value ?? "";
 }
-
-export const TextArea = forwardRef(TextAreaWF) as typeof TextAreaWF;

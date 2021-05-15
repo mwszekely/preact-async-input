@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { forwardRef } from "preact/compat";
 import { Temporal } from "proposal-temporal";
+import { forwardElementRef } from "../forward-element-ref";
 import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
 import { Input } from "./base";
 
@@ -28,9 +29,8 @@ function convertTime(value: string, e: Event) {
     }
 }
 
-function InputTimeWF(p: InputTimeProps) {
+export const InputTime = forwardElementRef(function InputTime(p: InputTimeProps) {
     return <Input convert={convertTime} type="time" {...(p as any)} value={timeToString(p.value)} max={timeToString(p.max)} min={timeToString(p.min)} />
-}
+})
 
-export const InputTime = forwardRef(InputTimeWF) as typeof InputTimeWF;
 
