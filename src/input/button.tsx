@@ -6,7 +6,7 @@ import { ProvideId, useProvidedId } from "../provide-id";
 import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
 
 export type ButtonProps<E extends HTMLElement = HTMLButtonElement> = Omit<Pick<h.JSX.HTMLAttributes<E>, VeryCommonHTMLAttributes | "disabled" | "type">, "onInput" | "value"> & {
-    onClick(unusedForConsistency: null, staleEvent: Event): void | Promise<void>;
+    onClick?(unusedForConsistency: null, staleEvent: Event): void | Promise<void>;
     childrenPre?: ComponentChildren;
     childrenPost?: ComponentChildren;
     children?: ComponentChildren;

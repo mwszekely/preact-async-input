@@ -6,7 +6,7 @@ export const AsyncConvertError = Symbol("AsyncConvertError");
 
 export interface AsyncEventHandlerInfo<E extends Event, T> {
     convertEvent(e: E): T | typeof AsyncConvertError;                       // The primary result of the event (is the control checked, or what value is typed in, etc.). If a conversion isn't possible, either return AsyncConvertError or throw (anything, it's discarded).  We need to associate an event with a primary "value" because the DOM events don't and expect you to just reference the element, but in an async environment referencing a live element is bad news, so we need to keep a copy of it around.
-    asyncHandler(value: T, originalStaleEvent: E): (void | Promise<void>);  // The actual event handler. Receives the result of convertedEvent above as its first argument, and a STALE reference to the original event. You MUST NOT use, e.g., event.target.value, as that value references the LIVE element and that value isn't the one you'd want.  It's here in case you need, e.g. the mouse coordinate properties on an event, which are NOT live and perfectly safe to grab.                                                  
+    asyncHandler?: undefined | ((value: T, originalStaleEvent: E) => (void | Promise<void>));  // The actual event handler. Receives the result of convertedEvent above as its first argument, and a STALE reference to the original event. You MUST NOT use, e.g., event.target.value, as that value references the LIVE element and that value isn't the one you'd want.  It's here in case you need, e.g. the mouse coordinate properties on an event, which are NOT live and perfectly safe to grab.                                                  
 }
 
 
@@ -35,7 +35,7 @@ export function useAsyncEventHandler<T, E extends Event = Event>({ convertEvent,
     // This is used to keep track of whatever handler was called most recently if there's one that's already running.
     // Until the current handler finishes, any new requests will just overwrite this over and over.
     // Only when the current handler has returned will whatever's currently in here be called.
-    const pendingPromiseFuncRef = useRef<[AsyncEventHandlerInfo<E, T>["asyncHandler"], T, E] | null>(null);
+    const pendingPromiseFuncRef = useRef<[NonNullable<AsyncEventHandlerInfo<E, T>["asyncHandler"]>, T, E] | null>(null);
 
     // This is used in order to always show the most recently entered value to the user 
     // while there's a handler running (and probably overwriting any parent value props right before a new one runs)
