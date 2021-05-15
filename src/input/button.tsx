@@ -37,7 +37,7 @@ function ButtonWF(p: ButtonProps, ref: Ref<HTMLButtonElement>) {
         <ProvideAsyncHandlerInfo pending={pending} error={error} latestConvertedValue={latestConvertedValue} fulfilled={fulfilled} startedTime={startedTime}>
             <ProvideId id={id}>
                 {childrenPre}
-                <button {...props} id={id} ref={ref} type={type} disabled={disabled} onClick={onClick}>{children}</button>
+                <button {...props} id={id} ref={ref} type={type ?? "button"} disabled={disabled} onClick={onClick}>{children}</button>
                 {childrenPost}
             </ProvideId>
         </ProvideAsyncHandlerInfo>
