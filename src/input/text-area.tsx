@@ -35,8 +35,7 @@ export const TextArea = forwardElementRef(function TextArea(p: TextAreaProps, re
         readOnly ||= (pending && !hasFocus);
 
 
-    const randomId = useProvidedId();
-    id ??= randomId;
+    id = useProvidedId("backup", id);
 
     return (
         <ProvideId id={id}>

@@ -36,10 +36,7 @@ export const SelectSingle = forwardElementRef(function SelectSingle(p: Renderabl
             disabled = true;
     }
 
-    const randomId = useProvidedId();
-    id ??= randomId;
-
-
+    id = useProvidedId("backup", id);
 
     return (
         <SelectedValueContext.Provider value={pending ? (latestConvertedValue ?? value) : value ?? ""}>

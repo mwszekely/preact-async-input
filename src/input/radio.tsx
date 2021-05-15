@@ -58,8 +58,7 @@ export const InputRadio = forwardElementRef(function InputRadio(p: InputRadioPro
 
     const onInput = useContext(OnInputContext);
 
-    let randomId = useProvidedId();
-    id ??= randomId;
+    id = useProvidedId("backup", id);
 
     return (
         <ProvideId id={id}>

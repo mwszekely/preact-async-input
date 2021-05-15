@@ -16,26 +16,10 @@ export interface SelectMultiProps extends Omit<InputPropsForAnyType<string, HTML
 export interface OptionMultiProps extends Omit<InputPropsForAnyType<string, HTMLOptionElement, MultiOptionInputAttributes>, "onInput" | "name" | "childrenPre" | "childrenPost"> {
     value: string;
     selected: boolean;
-    //onChange(selected: boolean): (void | Promise<void>)
 }
-
-/*function convertEventForSelect(e: Event) {
-    const target = e.target as HTMLSelectElement;
-
-    let allValues: string[] = Array.from(target.selectedOptions).map(option => option.value);
-
-    return allValues;
-}*/
-
 
 export const SelectMulti = forwardElementRef(function SelectMulti(p: RenderableProps<SelectMultiProps>, ref: Ref<HTMLSelectElement>) {
     let { id, childrenPost, childrenPre, disabled, size, children, hasFocus, onChange: userOnChange, ...props } = useHasFocus(p);
-
-    //const ssotSelectedValuesRef = useRef<Map<string, boolean | null>>(new Map());
-    //const optionsOnInputs = useRef<Map<string, (selectedValues: Set<string>, event: Event) => (void | Promise<void>)>>(new Map());
-
-
-
 
     const convertEventForSelect = useCallback((e: Event) => {
         const target = e.target as HTMLSelectElement;
@@ -47,15 +31,10 @@ export const SelectMulti = forwardElementRef(function SelectMulti(p: RenderableP
         asyncHandler: userOnChange
     });
 
-    const randomId = useProvidedId();
-    id ??= randomId;
-
-    const [k, setK] = useState(0);
+    id = useProvidedId("backup", id);
 
 
     return (
-        //<ProvideSelectWithOptionOnChange.Provider value={useCallback((value, onChange) => { onChange == null ? optionsOnInputs.current.delete(value) : optionsOnInputs.current.set(value, onChange) }, [optionsOnInputs])}>
-
         <ProvideId id={id}>
             <ProvideAsyncHandlerInfo pending={pending} error={error} latestConvertedValue={latestConvertedValue} fulfilled={fulfilled} startedTime={startedTime}>
                 <div>{pending.toString()}</div>
@@ -67,11 +46,8 @@ export const SelectMulti = forwardElementRef(function SelectMulti(p: RenderableP
                 {childrenPost}
             </ProvideAsyncHandlerInfo>
         </ProvideId>
-        //</ProvideSelectWithOptionOnChange.Provider>
     )
 })
-
-//const ProvideSelectWithOptionOnChange = createContext<(value: string, onChange: null | ((selectedValues: string[], e: Event) => (void | Promise<void>))) => void>(null!);
 
 
 export const OptionMulti = forwardElementRef(function OptionMulti(p: RenderableProps<OptionMultiProps>, ref: Ref<HTMLOptionElement>) {
@@ -91,15 +67,3 @@ export const OptionMulti = forwardElementRef(function OptionMulti(p: RenderableP
     return <option ref={ref} selected={pendingSelected ?? selected} value={value} disabled={disabled} {...props} />;
 })
 
-function makeConvertEvent(value: string) {
-    return function convertEvent(e: Event) {
-        const target = (e.target as HTMLSelectElement);
-        const options = target.selectedOptions;
-        for (let option of options) {
-            if (option.value == value) {
-                return true;
-            }
-        }
-        return false;
-    }
-}

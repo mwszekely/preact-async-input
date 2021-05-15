@@ -78,8 +78,7 @@ export const Input = forwardElementRef(function Input<T = string>(p: InputProps<
             readOnly = true;
     }
 
-    const randomId = useProvidedId();
-    id ??= randomId;
+    id = useProvidedId("backup", id);
 
     return (
         <ProvideAsyncHandlerInfo pending={pending} error={error} latestConvertedValue={latestConvertedValue} fulfilled={fulfilled} startedTime={startedTime}>

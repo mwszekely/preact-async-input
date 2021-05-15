@@ -27,8 +27,7 @@ export const Button = forwardElementRef(<P extends ButtonProps>(p: P, ref: Ref<P
 
     const { pending, syncHandler: onClick, fulfilled, startedTime, error, latestConvertedValue } = useAsyncEventHandler<null, Event>({ asyncHandler: userOnClick, convertEvent: returnNull });
 
-    const randomId = useProvidedId();
-    id ??= randomId;
+    id = useProvidedId("backup", id);
 
     if (pending && pendingMode == "disabled")
         disabled = true;

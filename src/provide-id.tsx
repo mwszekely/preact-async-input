@@ -23,8 +23,10 @@ function useRandomId() {
     return uuid;
 }
 
-export function useProvidedId() {
-    return useContext(RandomIdContext);
+export function useProvidedId(allowBackup: "backup" | "no-backup", idFromProp: string | undefined): string | undefined {
+    let idFromContext = useContext(RandomIdContext);
+    let backupId = useRandomId();
+    return idFromProp ?? idFromContext ?? (allowBackup == "backup"? backupId : undefined);
 }
 
 
