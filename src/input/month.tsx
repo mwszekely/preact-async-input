@@ -1,7 +1,7 @@
 import { h } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref } from "preact/hooks";
 import { Temporal } from "proposal-temporal";
+import { forwardElementRef } from "../forward-element-ref";
 import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
 import { Input } from "./base";
 
@@ -30,9 +30,7 @@ function convertMonth(e: Event) {
     }
 }
 
-function InputMonthWF(p: InputMonthProps, ref: Ref<HTMLInputElement>) {
+export const InputMonth = forwardElementRef(function InputMonth(p: InputMonthProps, ref: Ref<HTMLInputElement>) {
     const { value, max, min, ...props } = p;
     return <Input ref={ref} convert={convertMonth} type="month" {...(props)} value={dateToString(p.value) ?? undefined} max={dateToString(p.max) ?? undefined} min={dateToString(p.min) ?? undefined} />
-}
-
-export const InputMonth = forwardRef(InputMonthWF) as typeof InputMonthWF;
+})

@@ -1,6 +1,6 @@
 import { h } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref, useEffect } from "preact/hooks";
+import { forwardElementRef } from "../forward-element-ref";
 import { CheckboxInputAttributes, InputPropsForAnyType } from "../prop-types";
 import { useRefBackup } from "../use-ref-backup";
 import { Input } from "./base";
@@ -15,7 +15,7 @@ function convertEvent(e: Event) {
     return target.checked;
 }
 
-function InputCheckboxWF(p: InputCheckboxProps, ref: Ref<HTMLInputElement>) {
+export const InputCheckbox = forwardElementRef(function InputCheckbox(p: InputCheckboxProps, ref: Ref<HTMLInputElement>) {
     const { checked: checkedOrIndeterminate, ...props } = p;
 
     ref = useRefBackup(ref);
@@ -25,13 +25,12 @@ function InputCheckboxWF(p: InputCheckboxProps, ref: Ref<HTMLInputElement>) {
 
     useEffect(() => {
         if (ref.current)
-        ref.current.indeterminate = indeterminate;
+            ref.current.indeterminate = indeterminate;
     }, [indeterminate]);
 
 
-    return <Input ref={ref} value={undefined} type="checkbox" convert={convertEvent} {...props} checked={checked}  />;
-}
+    return <Input ref={ref} value={undefined} type="checkbox" convert={convertEvent} {...props} checked={checked} />;
+})
 
-export const InputCheckbox = forwardRef(InputCheckboxWF) as typeof InputCheckboxWF;
 
 

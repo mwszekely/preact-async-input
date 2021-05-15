@@ -1,6 +1,6 @@
 import { createContext, h, RenderableProps } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref, useContext } from "preact/hooks";
+import { forwardElementRef } from "../forward-element-ref";
 import { usePendingMode } from "../pending-mode";
 import { InputPropsForAnyType, SingleOptionInputAttributes, SingleSelectInputAttributes } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
@@ -23,7 +23,7 @@ function convertEvent(e: Event) {
     return target.value;
 }
 
-function SelectSingleWF(p: RenderableProps<SelectSingleProps>, ref: Ref<HTMLSelectElement>) {
+export const SelectSingle = forwardElementRef(function SelectSingle(p: RenderableProps<SelectSingleProps>, ref: Ref<HTMLSelectElement>) {
     let { id, disabled, value, children, size, onInput: userOnInput, hasFocus, ...props } = useHasFocus(p);
 
     //    const { enteredValueIsValid, handler: parsedUserOnInput, valueAsEntered } = useParsedEvent(convert, value, hasFocus, userOnInput);
@@ -54,11 +54,11 @@ function SelectSingleWF(p: RenderableProps<SelectSingleProps>, ref: Ref<HTMLSele
             </ProvideId>
         </SelectedValueContext.Provider>
     )
-}
+})
 
 const SelectedValueContext = createContext("");
 //const OnInputContext = createContext<((e: Event) => void) | undefined>(undefined);
-function OptionSingleWF(p: RenderableProps<OptionSingleProps>, ref: Ref<HTMLOptionElement>) {
+export const OptionSingle = forwardElementRef(function OptionSingle(p: RenderableProps<OptionSingleProps>, ref: Ref<HTMLOptionElement>) {
     const { value, disabled, ...props } = p;
 
     const selectedValue = useContext(SelectedValueContext);
@@ -66,7 +66,4 @@ function OptionSingleWF(p: RenderableProps<OptionSingleProps>, ref: Ref<HTMLOpti
     //const onInput = useContext(OnInputContext)
 
     return <option ref={ref} selected={selectedValue == value} multiple={false} value={value} disabled={disabled} {...props} />
-}
-
-export const SelectSingle = forwardRef(SelectSingleWF) as typeof SelectSingleWF;
-export const OptionSingle = forwardRef(OptionSingleWF) as typeof OptionSingleWF;
+})

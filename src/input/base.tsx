@@ -1,11 +1,11 @@
 import { h, Ref } from "preact";
-import { forwardRef } from "preact/compat";
 import { useEffect, useState } from "preact/hooks";
 import { ProvideId, useProvidedId } from "../provide-id";
 import { usePendingMode } from "../pending-mode";
 import { InputPropsForAnyType } from "../prop-types";
 import { AsyncConvertError, ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
 import { useHasFocus } from "../use-has-focus";
+import { forwardElementRef } from "../forward-element-ref";
 
 export interface InputProps<T> extends Omit<InputPropsForAnyType<T, HTMLInputElement, keyof h.JSX.HTMLAttributes<HTMLInputElement>>, "value" | "onInput"> {
     type: "color" | "date" | "datetime-local" | "email" | "month" | "number" | "password" | "search" | "tel" | "text" | "time" | "url" | "week" | "checkbox" | "radio" | "range",
@@ -44,7 +44,14 @@ export function useLostFocusWhilePending({ pending, hasFocus }: { pending: boole
 }
 
 
-function InputWF<T = string>(p: InputProps<T>, ref: Ref<HTMLInputElement>) {
+/**
+ * An <input> element that automatically handles an async onInput function.
+ * @param p The props to pass to the underlying <input> component. 
+ * All given props are either forwarded directly or modified and then forwarded .
+ * (For example, onFocus and onBlur, if given, are called after some custom code that also needs that event information.
+ * Or disabled is whatever is given as a prop, unless the component is pending, in which case it's forced to true).
+ */
+export const Input = forwardElementRef(function Input<T = string>(p: InputProps<T>, ref: Ref<HTMLInputElement>) {
     let { id, value, checked, convert, type, onInput: userOnInput, disabled, readOnly, childrenPost, childrenPre, hasFocus, ...props } = useHasFocus(p);
 
     // For checkboxes, we pretend we never have focus so that they're always immediately disabled when changed.
@@ -83,19 +90,10 @@ function InputWF<T = string>(p: InputProps<T>, ref: Ref<HTMLInputElement>) {
             </ProvideId>
         </ProvideAsyncHandlerInfo>
     )
-}
+});
 
 
 function defaultConvert({ target }: Event): any {
     const value = (target as HTMLInputElement).value;
     return value ?? "";
 }
-
-/**
- * An <input> element that automatically handles an async onInput function.
- * @param p The props to pass to the underlying <input> component. 
- * All given props are either forwarded directly or modified and then forwarded .
- * (For example, onFocus and onBlur, if given, are called after some custom code that also needs that event information.
- * Or disabled is whatever is given as a prop, unless the component is pending, in which case it's forced to true).
- */
-export const Input = forwardRef(InputWF) as typeof InputWF;

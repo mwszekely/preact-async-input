@@ -43,6 +43,8 @@ import { useAsyncEventHandler } from "./use-async-event-handler";
 import { useHasFocus } from "./use-has-focus";
 import { useRefBackup } from "./use-ref-backup";
 import { useStableCallback } from "./use-stable-callback";
+import { forwardElementRef } from "./forward-element-ref"
+
 export {
     Input,
     InputCheckbox,
@@ -66,7 +68,8 @@ export {
     useAsyncEventHandler,
     useHasFocus,
     useRefBackup,
-    useStableCallback
+    useStableCallback,
+    forwardElementRef
 }
 
 export type {

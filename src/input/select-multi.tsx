@@ -1,6 +1,6 @@
 import { createContext, Fragment, h, RenderableProps } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref, useCallback, useState } from "preact/hooks";
+import { forwardElementRef } from "../forward-element-ref";
 import { InputPropsForAnyType, MultiOptionInputAttributes, MultiSelectInputAttributes } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
 import { ProvideAsyncHandlerInfo, useAsyncEventHandler, useIsPending, useLatestValue } from "../use-async-event-handler";
@@ -27,16 +27,8 @@ export interface OptionMultiProps extends Omit<InputPropsForAnyType<string, HTML
     return allValues;
 }*/
 
-function eqSet<T>(as: Set<T>, bs: Set<T>): boolean {
-    if (as.size !== bs.size) return false;
-    for (var a of as) if (!bs.has(a)) return false;
-    return true;
-}
 
-
-const SelectedValues = createContext("");
-
-function SelectMultiWF(p: RenderableProps<SelectMultiProps>, ref: Ref<HTMLSelectElement>) {
+export const SelectMulti = forwardElementRef(function SelectMulti(p: RenderableProps<SelectMultiProps>, ref: Ref<HTMLSelectElement>) {
     let { id, childrenPost, childrenPre, disabled, size, children, hasFocus, onChange: userOnChange, ...props } = useHasFocus(p);
 
     //const ssotSelectedValuesRef = useRef<Map<string, boolean | null>>(new Map());
@@ -77,12 +69,12 @@ function SelectMultiWF(p: RenderableProps<SelectMultiProps>, ref: Ref<HTMLSelect
         </ProvideId>
         //</ProvideSelectWithOptionOnChange.Provider>
     )
-}
+})
 
 //const ProvideSelectWithOptionOnChange = createContext<(value: string, onChange: null | ((selectedValues: string[], e: Event) => (void | Promise<void>))) => void>(null!);
 
 
-function OptionMultiWF(p: RenderableProps<OptionMultiProps>, ref: Ref<HTMLOptionElement>) {
+export const OptionMulti = forwardElementRef(function OptionMulti(p: RenderableProps<OptionMultiProps>, ref: Ref<HTMLOptionElement>) {
     let { value, disabled, selected, ...props } = p;
 
     //const [selectionOverride, setSelectionOverride] = useState<null | boolean>(null);
@@ -97,7 +89,7 @@ function OptionMultiWF(p: RenderableProps<OptionMultiProps>, ref: Ref<HTMLOption
     props.children = `${value}:${pending ? "PENDING" : ""} ${(pendingSelected ?? "null").toString()} ?? ${selected.toString()}`
 
     return <option ref={ref} selected={pendingSelected ?? selected} value={value} disabled={disabled} {...props} />;
-}
+})
 
 function makeConvertEvent(value: string) {
     return function convertEvent(e: Event) {
@@ -111,6 +103,3 @@ function makeConvertEvent(value: string) {
         return false;
     }
 }
-
-export const SelectMulti = forwardRef(SelectMultiWF) as typeof SelectMultiWF;
-export const OptionMulti = forwardRef(OptionMultiWF) as typeof OptionMultiWF;

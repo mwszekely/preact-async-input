@@ -1,6 +1,6 @@
 import { createContext, h, RenderableProps } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref, useContext } from "preact/hooks";
+import { forwardElementRef } from "../forward-element-ref";
 import { InputPropsForAnyType } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
 import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
@@ -50,7 +50,7 @@ const SelectedValueContext = createContext("");
 const RadioGroupDisabledContext = createContext(false);
 const RadioGroupNameContext = createContext("");
 const OnInputContext = createContext<((e: Event) => void) | undefined>(undefined);
-function InputRadioWF(p: InputRadioProps, ref: Ref<HTMLInputElement>) {
+export const InputRadio = forwardElementRef(function InputRadio(p: InputRadioProps, ref: Ref<HTMLInputElement>) {
     let { id, childrenPost, childrenPre, value, disabled, ...props } = p;
 
     const name = useContext(RadioGroupNameContext);
@@ -67,6 +67,5 @@ function InputRadioWF(p: InputRadioProps, ref: Ref<HTMLInputElement>) {
             <input id={id} ref={ref} type="radio" checked={selectedValue == value} name={name} value={value} onInput={onInput} disabled={useContext(RadioGroupDisabledContext) || disabled} {...props} />
             {childrenPost}
         </ProvideId>)
-}
+})
 
-export const InputRadio = forwardRef(InputRadioWF) as typeof InputRadioWF;

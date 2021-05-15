@@ -1,5 +1,5 @@
 import { ComponentChildren, h, Ref } from "preact";
-import { forwardRef } from "preact/compat";
+import { forwardElementRef } from "../forward-element-ref";
 import { usePendingMode } from "../pending-mode";
 import { VeryCommonHTMLAttributes } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
@@ -15,7 +15,7 @@ export type ButtonProps = Omit<Pick<h.JSX.HTMLAttributes<HTMLButtonElement>, Ver
 
 function returnNull() { return null; }
 
-function ButtonWF(p: ButtonProps, ref: Ref<HTMLButtonElement>) {
+export const Button = forwardElementRef((p: ButtonProps, ref: Ref<HTMLButtonElement>) => {
     let { id, type, onClick: userOnClick, disabled, children, childrenPost, childrenPre, ...props } = p;
 
 
@@ -42,8 +42,5 @@ function ButtonWF(p: ButtonProps, ref: Ref<HTMLButtonElement>) {
             </ProvideId>
         </ProvideAsyncHandlerInfo>
     )
-}
+});
 
-
-
-export const Button = forwardRef(ButtonWF) as typeof ButtonWF;

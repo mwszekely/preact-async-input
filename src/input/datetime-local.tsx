@@ -1,7 +1,7 @@
 import { h } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref } from "preact/hooks";
 import { Temporal } from "proposal-temporal";
+import { forwardElementRef } from "../forward-element-ref";
 import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
 import { Input } from "./base";
 
@@ -27,8 +27,6 @@ function convertDateTime({ target }: InputEvent) {
     return Temporal.PlainDateTime.from(value);
 }
 
-function InputDateTimeWF(p: InputDateTimeProps, ref: Ref<HTMLInputElement>) {
+export const InputDateTime = forwardElementRef(function InputDateTime(p: InputDateTimeProps, ref: Ref<HTMLInputElement>) {
     return <Input ref={ref} convert={convertDateTime} type="datetime-local" {...(p)} value={datetimeToString(p.value) ?? ""} max={datetimeToString(p.max)} min={datetimeToString(p.min)} />
-}
-
-export const InputDateTime = forwardRef(InputDateTimeWF) as typeof InputDateTimeWF;
+});

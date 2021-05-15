@@ -1,6 +1,6 @@
 import { h } from "preact";
-import { forwardRef } from "preact/compat";
 import { Ref } from "preact/hooks";
+import { forwardElementRef } from "../forward-element-ref";
 import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
 import { Input } from "./base";
 
@@ -21,9 +21,8 @@ function convertNumber({ target }: Event) {
     return undefined;
 }
 
-function InputNumberWF(p: InputNumberProps, ref: Ref<HTMLInputElement>) {
+export const InputNumber = forwardElementRef(function InputNumber(p: InputNumberProps, ref: Ref<HTMLInputElement>) {
     return <Input ref={ref} convert={convertNumber} type="number" {...p} value={p.value?.toString() ?? ""} max={(p.max?.toString())} min={p.min?.toString()} />
-}
+})
 
-export const InputNumber = forwardRef(InputNumberWF) as typeof InputNumberWF;
 
