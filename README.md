@@ -1,8 +1,8 @@
 
-# Preact Async Inputs
+# Preact Async Input
 
 **Note: this library uses the [experimental (stage 3) Temporal proposal](https://github.com/tc39/proposal-temporal), so it's not production-ready!**
-<p><small>It also isn't production-ready because it's not heavily tested</small></p>
+<p>(It also isn't production-ready because it's not heavily tested)</p>
 
 ## The problem
 
