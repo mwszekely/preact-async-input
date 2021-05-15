@@ -25,7 +25,7 @@ async function onInput(checked: boolean) {
 There's nothing in the rules that says you can't have an event handler that is asynchronous, but there are eventually going to be problems when that handler is called, then called again before the first one has finished running.  While it's reasonable sometimes to simply disable the input while an event handler is running to block this from ever happening in the first place, this is really only feasible for e.g. checkboxes and maybe select menus, but definitely not a text box, range slider, etc.  Waiting for the async handler to finish every time you type a character would be very slow and frustrating!
 
 ## The solution
-This library includes a set of components that simply wrap around an ``<input>`` (or ``<textarea>``, ``<select>``, etc.), forwarding any props you pass in, and privides a few modifications, like ``onInput`` being allowed to return a ``Promise`` instead of just ``void``.
+This library includes a set of components that simply wrap around an ``<input>`` (or ``<textarea>``, ``<select>``, etc.), forwarding any props you pass in, and provides a few modifications, like ``onInput`` being allowed to return a ``Promise`` instead of just ``void``.
 
 If an event handler is called multiple times in quick succession (for example, when typing in a ``<textarea>``), the first call always happens immediately.  Any subsequent calls to the handler are temporarily ignored until the current handler is finished, at which point just the most recently requested handler is run (with all other request in between being entirely discarded).
 
