@@ -1,5 +1,40 @@
 
-import { Input, InputCheckbox, InputColor, InputDate, InputDateTime, InputEmail, InputMonth, InputNumber, InputRadio, InputRadioGroup, InputRange,  InputTime, SelectMulti, SelectSingle, TextArea } from "./input"
+import {
+    Input,
+    InputCheckbox,
+    InputColor,
+    InputDate,
+    InputDateTime,
+    InputEmail,
+    InputMonth,
+    InputNumber,
+    InputRadio,
+    InputRadioGroup,
+    InputRange,
+    InputTime,
+    SelectMulti,
+    SelectSingle,
+    TextArea,
+
+    InputProps,
+    TextAreaProps,
+    InputDateProps,
+    InputTimeProps,
+    InputColorProps,
+    InputEmailProps,
+    InputMonthProps,
+    InputRadioProps,
+    InputRangeProps,
+    InputNumberProps,
+    OptionMultiProps,
+    SelectMultiProps,
+    OptionSingleProps,
+    SelectSingleProps,
+    InputCheckboxProps,
+    InputDateTimeProps,
+    InputRadioGroupProps
+} from "./input"
+
 import { ProvideId, useProvidedId } from "./provide-id";
 import { usePendingMode, SetPendingMode } from "./pending-mode";
 import { useAsyncEventHandler } from "./use-async-event-handler";
@@ -29,4 +64,24 @@ export {
     useHasFocus,
     useRefBackup,
     useStableCallback
+}
+
+export type {
+    InputProps,
+    TextAreaProps,
+    InputDateProps,
+    InputTimeProps,
+    InputColorProps,
+    InputEmailProps,
+    InputMonthProps,
+    InputRadioProps,
+    InputRangeProps,
+    InputNumberProps,
+    OptionMultiProps,
+    SelectMultiProps,
+    OptionSingleProps,
+    SelectSingleProps,
+    InputCheckboxProps,
+    InputDateTimeProps,
+    InputRadioGroupProps
 }
