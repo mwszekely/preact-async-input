@@ -3,6 +3,7 @@ import { useCallback, useState } from 'preact/hooks';
 import { Temporal } from 'proposal-temporal';
 import { InputCheckbox, InputColor, InputDate, InputDateTime, InputEmail, InputNumber, InputRadio, InputRadioGroup } from "./input";
 import { Input } from './input/base';
+import { Button } from './input/button';
 import { InputRange } from './input/range';
 import { OptionMulti, SelectMulti } from './input/select-multi';
 import { OptionSingle, SelectSingle } from './input/select-single';
@@ -89,6 +90,7 @@ const App = () => {
     }, [setR, setG, setB])
     return <div>
         <SetPendingMode mode="readOnly">
+            <div><Button onClick={async () => new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000))}>Test button</Button></div>
             <div>{checked.toString()}<InputCheckbox checked={checked} onInput={(setChecked)} /></div>
             <div>{value}<InputNumber value={value} onInput={(setValue)} /></div>
             <div>{value}<InputRange value={value} onInput={(setValue)} min={0} max={20} /></div>

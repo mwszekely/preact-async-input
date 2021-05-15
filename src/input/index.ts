@@ -1,4 +1,5 @@
 import { Input, InputProps } from "./base"
+import { Button, ButtonProps } from "./button"
 import { InputCheckbox, InputCheckboxProps } from "./checkbox";
 import { InputRadio, InputRadioGroup, InputRadioGroupProps, InputRadioProps } from "./radio"
 import { InputNumber, InputNumberProps } from "./number"
@@ -26,6 +27,7 @@ export {
     InputRadioGroup,
     InputTime,
     InputRange,
+    Button,
     TextArea,
     SelectSingle, OptionSingle,
     SelectMulti, OptionMulti
@@ -46,6 +48,7 @@ export type {
     InputRadioProps,
     InputRangeProps,
     InputTimeProps,
+    ButtonProps,
     SelectSingleProps,
     OptionSingleProps,
     SelectMultiProps,
