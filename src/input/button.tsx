@@ -5,7 +5,7 @@ import { VeryCommonHTMLAttributes } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
 import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
 
-export type ButtonProps = Omit<Pick<h.JSX.HTMLAttributes<HTMLButtonElement>, VeryCommonHTMLAttributes | "disabled" | "type">, "onInput" | "value"> & {
+export type ButtonProps<E extends HTMLElement = HTMLButtonElement> = Omit<Pick<h.JSX.HTMLAttributes<E>, VeryCommonHTMLAttributes | "disabled" | "type">, "onInput" | "value"> & {
     onClick(unusedForConsistency: null, staleEvent: Event): void | Promise<void>;
     childrenPre?: ComponentChildren;
     childrenPost?: ComponentChildren;
@@ -15,7 +15,7 @@ export type ButtonProps = Omit<Pick<h.JSX.HTMLAttributes<HTMLButtonElement>, Ver
 
 function returnNull() { return null; }
 
-export const Button = forwardElementRef((p: ButtonProps, ref: Ref<HTMLButtonElement>) => {
+export const Button = forwardElementRef(<P extends ButtonProps>(p: P, ref: Ref<P extends ButtonProps<infer E>? E : HTMLElement>) => {
     let { id, type, onClick: userOnClick, disabled, children, childrenPost, childrenPre, ...props } = p;
 
 
