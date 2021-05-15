@@ -15,6 +15,7 @@ import {
     SelectMulti,
     SelectSingle,
     TextArea,
+    Button,
 
     InputProps,
     TextAreaProps,
@@ -32,7 +33,8 @@ import {
     SelectSingleProps,
     InputCheckboxProps,
     InputDateTimeProps,
-    InputRadioGroupProps
+    InputRadioGroupProps,
+    ButtonProps
 } from "./input"
 
 import { ProvideId, useProvidedId } from "./provide-id";
@@ -57,6 +59,7 @@ export {
     SelectMulti,
     SelectSingle,
     TextArea,
+    Button,
 
     ProvideId, useProvidedId,
     usePendingMode, SetPendingMode,
@@ -83,5 +86,6 @@ export type {
     SelectSingleProps,
     InputCheckboxProps,
     InputDateTimeProps,
-    InputRadioGroupProps
+    InputRadioGroupProps,
+    ButtonProps
 }
