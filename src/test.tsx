@@ -101,9 +101,9 @@ const App = () => {
             <div>
                 {radio}
                 <InputRadioGroup name={"radio-test"} value={radio} onInput={(setRadio)} >
-                    <ProvideId>{h(() => <InputRadio value="A" childrenPre={h(() => <label htmlFor={useProvidedId()}>A</label>, {})} />, {})}</ProvideId>
-                    <ProvideId>{h(() => <InputRadio value="B" childrenPre={h(() => <label htmlFor={useProvidedId()}>B</label>, {})} />, {})}</ProvideId>
-                    <ProvideId>{h(() => <InputRadio value="C" childrenPre={h(() => <label htmlFor={useProvidedId()}>C</label>, {})} />, {})}</ProvideId>
+                    <ProvideId>{h(() => <InputRadio value="A" childrenPre={h(() => <label htmlFor={useProvidedId("no-backup", null)}>A</label>, {})} />, {})}</ProvideId>
+                    <ProvideId>{h(() => <InputRadio value="B" childrenPre={h(() => <label htmlFor={useProvidedId("no-backup", null)}>B</label>, {})} />, {})}</ProvideId>
+                    <ProvideId>{h(() => <InputRadio value="C" childrenPre={h(() => <label htmlFor={useProvidedId("no-backup", null)}>C</label>, {})} />, {})}</ProvideId>
                 </InputRadioGroup>
             </div>
             <div>
