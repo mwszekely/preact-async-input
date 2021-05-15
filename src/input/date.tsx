@@ -5,17 +5,16 @@ import { Temporal } from "proposal-temporal";
 import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
 import { Input } from "./base";
 
-const { PlainDate } = Temporal;
-type PlainDate = InstanceType<typeof PlainDate>;
 
 
-export interface InputDateProps extends Omit<InputPropsForAnyType<PlainDate | null, HTMLInputElement, NumberAndDateInputAttributes>, "min" | "max"> {
-    min?: PlainDate;
-    max?: PlainDate;
+
+export interface InputDateProps extends Omit<InputPropsForAnyType<Temporal.PlainDate | null, HTMLInputElement, NumberAndDateInputAttributes>, "min" | "max"> {
+    min?: Temporal.PlainDate;
+    max?: Temporal.PlainDate;
     step?: number;
 }
 
-function dateToString(date: PlainDate | null | undefined) {
+function dateToString(date: Temporal.PlainDate | null | undefined) {
     return !date ? undefined : `${date.year.toString().padStart(4, "0")}-${date.month.toString().padStart(2, "0")}-${date.day.toString().padStart(2, "0")}`
 }
 
@@ -25,7 +24,7 @@ function convertDate({ target }: InputEvent) {
     if (value == "" || value == null)
         return null;
 
-    return PlainDate.from(value);
+    return Temporal.PlainDate.from(value);
 }
 
 function InputDateWF(p: InputDateProps, ref: Ref<HTMLInputElement>) {

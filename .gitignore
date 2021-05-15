@@ -1,5 +1,7 @@
 *.js
 *.js.map
+*.d.ts
+*.d.ts.map
 !rollup.config.js
 package-lock.json
 
