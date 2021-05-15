@@ -4,7 +4,6 @@ import { usePendingMode } from "../pending-mode";
 import { VeryCommonHTMLAttributes } from "../prop-types";
 import { ProvideId, useProvidedId } from "../provide-id";
 import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
-import { useHasFocus } from "../use-has-focus";
 
 export type ButtonProps = Omit<Pick<h.JSX.HTMLAttributes<HTMLButtonElement>, VeryCommonHTMLAttributes | "disabled" | "type">, "onInput" | "value"> & {
     onClick(unusedForConsistency: null, staleEvent: Event): void | Promise<void>;
@@ -17,7 +16,7 @@ export type ButtonProps = Omit<Pick<h.JSX.HTMLAttributes<HTMLButtonElement>, Ver
 function returnNull() { return null; }
 
 function ButtonWF(p: ButtonProps, ref: Ref<HTMLButtonElement>) {
-    let { id, type, onClick: userOnClick, disabled, children, childrenPost, childrenPre, hasFocus, ...props } = useHasFocus(p);
+    let { id, type, onClick: userOnClick, disabled, children, childrenPost, childrenPre, ...props } = p;
 
 
     // Buttons can't be readonly
