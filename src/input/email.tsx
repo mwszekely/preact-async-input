@@ -1,5 +1,4 @@
-import { h } from "preact";
-import { Ref } from "preact/hooks";
+import { Ref, h } from "preact";
 import { forwardElementRef } from "../forward-element-ref";
 import { EmailInputAttributes, InputPropsForAnyType } from "../prop-types";
 import { Input } from "./base";

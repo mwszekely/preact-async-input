@@ -1,7 +1,6 @@
-import {  } from "preact";
-import { useRef, Ref } from "preact/hooks";
+import { Ref } from "preact";
+import { useRefElement } from "./use-ref-element";
 
-export function useRefBackup<T>(givenRef?: Ref<T> | undefined) {
-    const backupRef = useRef<T>(givenRef?.current!) as Ref<T>;
-    return givenRef ?? backupRef;
+export function useRefBackup<T>(givenRef?: Ref<T | null> | undefined) {
+    return useRefElement(givenRef).ref;
 }

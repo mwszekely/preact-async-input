@@ -1,5 +1,5 @@
-import { createContext, h, RenderableProps } from "preact";
-import { Ref, useContext } from "preact/hooks";
+import { Ref, createContext, h, RenderableProps } from "preact";
+import { useContext } from "preact/hooks";
 import { forwardElementRef } from "../forward-element-ref";
 import { usePendingMode } from "../pending-mode";
 import { InputPropsForAnyType, SingleOptionInputAttributes, SingleSelectInputAttributes } from "../prop-types";

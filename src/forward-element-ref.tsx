@@ -1,6 +1,6 @@
 
-import { VNode } from "preact";
-import { forwardRef, Ref } from "preact/compat";
+import { VNode, RefObject, RefCallback, Ref } from "preact";
+import { forwardRef } from "preact/compat";
 
 type ForwardedFunctionalComponentProps<P, E> = Omit<P, "ref"> & { ref?: Ref<E> }
 type ForwardedFunctionalComponent<P, E> = (p: ForwardedFunctionalComponentProps<P, E>) => VNode<ForwardedFunctionalComponentProps<P, E>>
