@@ -14,15 +14,16 @@ function mergeRefs<T>(...refs: (RefCallback<T> | RefObject<T> | null | undefined
 }
 
 /**
- * Returns both a ref and the element it contains
- * (unlike useRef the component is re-rendered when we have the ref)
+ * Allows accessing the element a ref references as soon as it references it.
+ * This hook returns a hook--useRefElementProps modifies the props that you were going to pass to an HTMLElement, 
+ * adding a RefCallback and merging it with any existing ref that existed on the props.
  */
-export function useRefElement<T>(givenRef?: Ref<T> | undefined) {
+export function useRefElement<T>() {
     const [element, setElement] = useState<T | null>(null);
-    const ref = mergeRefs(givenRef, useCallback((e: T | null) => { if (e) setElement(() => e) }, []));
+    const myRef = useCallback((e: T | null) => { if (e) setElement(() => e) }, []);
 
     return {
-        ref,
+        useRefElementProps: useCallback(<P extends { ref?: Ref<T> }>({ ref, ...rest }: P) => ({ ...rest, ref: mergeRefs(ref, myRef) }), [myRef]),
         element
     }
 }

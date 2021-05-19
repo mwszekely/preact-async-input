@@ -43,7 +43,8 @@ import { ProvideId, useProvidedId } from "./provide-id";
 import { usePendingMode, SetPendingMode } from "./pending-mode";
 import { useAsyncEventHandler } from "./use-async-event-handler";
 import { useHasFocus } from "./use-has-focus";
-import { useRefBackup } from "./use-ref-backup";
+import { useRefElement } from "./use-ref-element";
+import { useRefBackup, useRefBackupProps } from "./use-ref-backup";
 import { useStableCallback } from "./use-stable-callback";
 import { forwardElementRef } from "./forward-element-ref"
 
@@ -71,9 +72,12 @@ export {
     usePendingMode, SetPendingMode,
     useAsyncEventHandler,
     useHasFocus,
-    useRefBackup,
     useStableCallback,
-    forwardElementRef
+    forwardElementRef,
+
+    useRefElement,
+    useRefBackup,
+    useRefBackupProps
 }
 
 export type {
