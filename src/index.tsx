@@ -14,6 +14,8 @@ import {
     InputTime,
     SelectMulti,
     SelectSingle,
+    OptionSingle,
+    OptionMulti,
     TextArea,
     Button,
 
@@ -60,6 +62,8 @@ export {
     InputTime,
     SelectMulti,
     SelectSingle,
+    OptionSingle,
+    OptionMulti,
     TextArea,
     Button,
 
