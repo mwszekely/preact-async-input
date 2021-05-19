@@ -19,11 +19,12 @@ function mergeRefs<T>(...refs: (RefCallback<T> | RefObject<T> | null | undefined
  */
 export function useRefElement<T>(givenRef?: Ref<T> | undefined) {
     const [element, setElement] = useState<T | null>(null);
-    const ref = mergeRefs(givenRef, useCallback((e: T | null) => { setElement(() => e) }, []));
+    const ref = mergeRefs(givenRef, useCallback((e: T | null) => { if (e) setElement(() => e) }, []));
 
     return {
         ref,
         element
     }
 }
+
 
