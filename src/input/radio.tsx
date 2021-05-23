@@ -28,7 +28,7 @@ export function InputRadioGroup(p: RenderableProps<InputRadioGroupProps>) {
     const { pending, syncHandler: onInput, latestConvertedValue, fulfilled, startedTime, error } = useAsyncEventHandler<string, Event>({ asyncHandler: userOnInput, convertEvent });
 
     return (
-        <SelectedValueContext.Provider value={latestConvertedValue ?? value ?? ""}>
+        <SelectedValueContext.Provider value={(pending? latestConvertedValue : value) ?? ""}>
             <RadioGroupDisabledContext.Provider value={pending || disabled || false}>
                 <RadioGroupNameContext.Provider value={name}>
                     <OnInputContext.Provider value={onInput}>
