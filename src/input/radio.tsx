@@ -54,7 +54,7 @@ export const InputRadio = forwardElementRef(function InputRadio(p: InputRadioPro
     let { id, childrenPost, childrenPre, value, disabled, ...props } = p;
 
     const name = useContext(RadioGroupNameContext);
-    const selectedValue = useContext(SelectedValueContext);
+    const selectedValue = useRadioSelectedValue();
 
     const onInput = useContext(OnInputContext);
 
@@ -66,5 +66,9 @@ export const InputRadio = forwardElementRef(function InputRadio(p: InputRadioPro
             <input id={id} ref={ref} type="radio" checked={selectedValue == value} name={name} value={value} onInput={onInput} disabled={useContext(RadioGroupDisabledContext) || disabled} {...props} />
             {childrenPost}
         </ProvideId>)
-})
+});
+
+export function useRadioSelectedValue() {
+    return useContext(SelectedValueContext);
+}
 

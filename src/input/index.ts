@@ -1,7 +1,7 @@
 import { Input, InputProps } from "./base"
 import { Button, ButtonProps } from "./button"
 import { InputCheckbox, InputCheckboxProps } from "./checkbox";
-import { InputRadio, InputRadioGroup, InputRadioGroupProps, InputRadioProps } from "./radio"
+import { InputRadio, InputRadioGroup, InputRadioGroupProps, InputRadioProps, useRadioSelectedValue } from "./radio"
 import { InputNumber, InputNumberProps } from "./number"
 import { InputColor, InputColorProps } from "./color";
 import { InputDate, InputDateProps } from "./date";
@@ -23,7 +23,7 @@ export {
     InputEmail,
     InputMonth,
     InputNumber,
-    InputRadio,
+    InputRadio, useRadioSelectedValue,
     InputRadioGroup,
     InputTime,
     InputRange,

@@ -18,6 +18,7 @@ import {
     OptionMulti,
     TextArea,
     Button,
+    useRadioSelectedValue,
 
     InputProps,
     TextAreaProps,
@@ -77,7 +78,8 @@ export {
 
     useRefElement,
     useRefBackup,
-    useRefBackupProps
+    useRefBackupProps,
+    useRadioSelectedValue
 }
 
 export type {
