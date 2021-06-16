@@ -1,17 +1,6 @@
 import { Ref, RefCallback, RefObject } from "preact";
 import { useCallback, useState } from "preact/hooks";
-
-function mergeRefs<T>(...refs: (RefCallback<T> | RefObject<T> | null | undefined)[]): RefCallback<T> {
-    return (value: T | null) => {
-        refs.forEach(ref => {
-            if (typeof ref === 'function') {
-                ref(value)
-            } else if (ref != null) {
-                ref.current = value
-            }
-        })
-    }
-}
+import { useMergedRefs } from "./use-merged-refs";
 
 /**
  * Allows accessing the element a ref references as soon as it references it.
@@ -23,7 +12,7 @@ export function useRefElement<T>() {
     const myRef = useCallback((e: T | null) => { if (e) setElement(() => e) }, []);
 
     return {
-        useRefElementProps: useCallback(<P extends { ref?: Ref<T> }>({ ref, ...rest }: P) => ({ ...rest, ref: mergeRefs(ref, myRef) }), [myRef]),
+        useRefElementProps: useCallback(<P extends { ref?: Ref<T> }>({ ref, ...rest }: P) => ({ ...rest, ref: useMergedRefs(ref, myRef) }), [myRef]),
         element
     }
 }
