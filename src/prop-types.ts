@@ -1,5 +1,4 @@
-import { h, ComponentChildren } from "preact";
-import { Ref } from "preact/hooks";
+import { h, Ref, ComponentChildren } from "preact";
 
 /**
  * In general this is used to make sure we only show relevant properties for autocomplete

@@ -40,7 +40,7 @@ export {
     ButtonProps
 } from "./input"
 
-export { ProvideId, useProvidedId } from "./provide-id";
+export { ProvideId, useProvidedId, useRandomId } from "./provide-id";
 export { usePendingMode, SetPendingMode } from "./pending-mode";
 export { useAsyncEventHandler } from "./use-async-event-handler";
 export { useHasFocus } from "./use-has-focus";

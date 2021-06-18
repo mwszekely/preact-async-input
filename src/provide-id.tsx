@@ -7,12 +7,12 @@ function G() { return HexDigits[Math.floor(Math.random() * 15)]; }
 
 // Good Enough (TM)
 function fakeUuid() {
-    return `${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}`
+    return `uuid-${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}_${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}${G()}`
 }
 
 // If inside a component that provides a random ID, returns that ID that can be used for, say, a <label>.
 // If outside, generates a random ID that can then be used for a context for the above.
-function useRandomId() {
+export function useRandomId() {
     const [uuid, _] = useState(() => fakeUuid());
     return uuid;
 }

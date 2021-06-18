@@ -1,4 +1,4 @@
-import { Ref, RefCallback, RefObject } from "preact";
+import { Ref } from "preact";
 import { useCallback, useState } from "preact/hooks";
 import { useMergedRefs } from "./use-merged-refs";
 
