@@ -1,8 +1,8 @@
 import { Ref, h } from "preact";
 import { Temporal } from "proposal-temporal";
-import { forwardElementRef } from "../forward-element-ref";
-import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
-import { Input } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { InputPropsForAnyType, NumberAndDateInputAttributes } from "./prop-types";
+import { Input } from "./input-base";
 
 
 

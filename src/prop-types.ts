@@ -2,9 +2,8 @@ import { h, Ref, ComponentChildren } from "preact";
 
 /**
  * In general this is used to make sure we only show relevant properties for autocomplete
- * All properties are forwareded, but these are the ones that cover most cases
+ * All properties are forwarded, but these are the ones that cover most cases
  */
-
 export type VeryCommonHTMLAttributes = "id" | "className" | "class" | "style" | "tabIndex" | "role" | "draggable" | "accessKey" | "onFocus" | "onBlur";
 export type VeryCommonInputAttributes = "name" | "disabled" | "autoFocus" | "list" | "required" | "value";
 export type CheckboxInputAttributes = Exclude<VeryCommonInputAttributes, "value"> | "checked";

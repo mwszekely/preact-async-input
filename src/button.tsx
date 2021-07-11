@@ -1,9 +1,9 @@
 import { ComponentChildren, h, Ref } from "preact";
-import { forwardElementRef } from "../forward-element-ref";
-import { usePendingMode } from "../pending-mode";
-import { VeryCommonHTMLAttributes } from "../prop-types";
-import { ProvideId, useProvidedId } from "../provide-id";
-import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { usePendingMode } from "./pending-mode";
+import { VeryCommonHTMLAttributes } from "./prop-types";
+import { ProvideId, useProvidedId } from "./provide-id";
+import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "./use-async-event-handler";
 
 export type ButtonProps<E extends HTMLElement = HTMLButtonElement> = Omit<Pick<h.JSX.HTMLAttributes<E>, VeryCommonHTMLAttributes | "disabled" | "type">, "onInput" | "value"> & {
     onClick?(unusedForConsistency: null, staleEvent: Event): void | Promise<void>;
@@ -27,7 +27,7 @@ export const Button = forwardElementRef(<P extends ButtonProps>(p: P, ref: Ref<P
 
     const { pending, syncHandler: onClick, fulfilled, startedTime, error, latestConvertedValue } = useAsyncEventHandler<null, Event>({ asyncHandler: userOnClick, convertEvent: returnNull });
 
-    id = useProvidedId("backup", id);
+    id = useProvidedId(id, "backup");
 
     if (pending && pendingMode == "disabled")
         disabled = true;

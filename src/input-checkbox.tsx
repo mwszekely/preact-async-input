@@ -1,9 +1,9 @@
 import { Ref, h } from "preact";
 import { useEffect } from "preact/hooks";
-import { forwardElementRef } from "../forward-element-ref";
-import { CheckboxInputAttributes, InputPropsForAnyType } from "../prop-types";
-import { useRefElement } from "../use-ref-element";
-import { Input } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { CheckboxInputAttributes, InputPropsForAnyType } from "./prop-types";
+import { useRefElement } from "./util/use-ref-element";
+import { Input } from "./input-base";
 
 export interface InputCheckboxProps extends Omit<InputPropsForAnyType<boolean | "indeterminate", HTMLInputElement, CheckboxInputAttributes>, "checked" | "onInput" | "value"> {
     checked: boolean | "indeterminate";

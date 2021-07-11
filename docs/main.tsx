@@ -1,15 +1,8 @@
 import { h, render } from 'preact';
 import { useCallback, useState } from 'preact/hooks';
 import { Temporal } from 'proposal-temporal';
-import { InputCheckbox, InputColor, InputDate, InputDateTime, InputEmail, InputNumber, InputRadio, InputRadioGroup } from "./input";
-import { Input } from './input/base';
-import { Button } from './input/button';
-import { InputRange } from './input/range';
-import { OptionMulti, SelectMulti } from './input/select-multi';
-import { OptionSingle, SelectSingle } from './input/select-single';
-import { TextArea } from './input/text-area';
-import { SetPendingMode } from './pending-mode';
-import { ProvideId, useProvidedId } from './provide-id';
+import { useProvidedId, Button, Input, InputNumber, InputMonth, InputRange, InputCheckbox, InputColor, InputDate, InputDateTime, InputEmail, InputRadio, InputRadioGroup, OptionMulti, OptionSingle, ProvideId, SelectMulti, SelectSingle, SetPendingMode, TextArea } from "..";
+
 
 
 
@@ -89,7 +82,7 @@ const App = () => {
         //setColorB(value)
     }, [setR, setG, setB])
     return <div>
-        <SetPendingMode mode="readOnly">
+        <SetPendingMode mode="disabled">
             <div><Button onClick={async () => new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000))}>Test button</Button></div>
             <div>{checked.toString()}<InputCheckbox checked={checked} onInput={(setChecked)} /></div>
             <div>{value}<InputNumber value={value} onInput={(setValue)} /></div>
@@ -101,9 +94,9 @@ const App = () => {
             <div>
                 {radio}
                 <InputRadioGroup name={"radio-test"} value={radio} onInput={(setRadio)} >
-                    <ProvideId>{h(() => <InputRadio value="A" childrenPre={h(() => <label htmlFor={useProvidedId("no-backup", null)}>A</label>, {})} />, {})}</ProvideId>
-                    <ProvideId>{h(() => <InputRadio value="B" childrenPre={h(() => <label htmlFor={useProvidedId("no-backup", null)}>B</label>, {})} />, {})}</ProvideId>
-                    <ProvideId>{h(() => <InputRadio value="C" childrenPre={h(() => <label htmlFor={useProvidedId("no-backup", null)}>C</label>, {})} />, {})}</ProvideId>
+                    <ProvideId>{h(() => <InputRadio value="A" childrenPre={h(() => <label htmlFor={useProvidedId(null, "no-backup")}>A</label>, {})} />, {})}</ProvideId>
+                    <ProvideId>{h(() => <InputRadio value="B" childrenPre={h(() => <label htmlFor={useProvidedId(null, "no-backup")}>B</label>, {})} />, {})}</ProvideId>
+                    <ProvideId>{h(() => <InputRadio value="C" childrenPre={h(() => <label htmlFor={useProvidedId(null, "no-backup")}>C</label>, {})} />, {})}</ProvideId>
                 </InputRadioGroup>
             </div>
             <div>
@@ -139,4 +132,4 @@ const App = () => {
     </div>;
 }
 
-render(<App />, document.body!);
+render(<App />, document.getElementById("main")!);

@@ -1,7 +1,7 @@
 import { Ref, h } from "preact";
-import { forwardElementRef } from "../forward-element-ref";
-import { EmailInputAttributes, InputPropsForAnyType } from "../prop-types";
-import { Input } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { EmailInputAttributes, InputPropsForAnyType } from "./prop-types";
+import { Input } from "./input-base";
 
 
 export interface InputEmailProps extends InputPropsForAnyType<string, HTMLInputElement, EmailInputAttributes> {

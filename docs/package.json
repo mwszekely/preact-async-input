@@ -1,0 +1,43 @@
+{
+    "name": "preact-async-input-demo",
+    "private": true,
+    "version": "0.0.1",
+    "main": "index.html",
+    "scripts": {
+        "watch-ts": "tsc --watch",
+        "watch-js": "rollup -wc",
+        "build-ts": "tsc",
+        "build-js": "rollup -c",
+        "watch": "concurrently \"npm:watch-*\"",
+        "build": "concurrently \"npm:build-*\"",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "install": "npm run build"
+    },
+    "peerDependencies": {
+        "preact": "^10.5.13"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.16",
+        "@babel/preset-env": "^7.12.16",
+        "@rollup/plugin-alias": "^3.1.1",
+        "@rollup/plugin-babel": "^5.3.0",
+        "@rollup/plugin-commonjs": "^16.0.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
+        "@rollup/plugin-url": "^5.0.1",
+        "@types/color-name": "^1.1.1",
+        "@types/node": "^14.14.10",
+        "chokidar": "^3.4.3",
+        "commander": "^6.2.1",
+        "concurrently": "^5.3.0",
+        "microbundle": "^0.13.3",
+        "rollup": "^2.34.0",
+        "sass": "^1.29.0",
+        "serve": "^11.3.2",
+        "ts-toolbelt": "^9.6.0",
+        "type-fest": "^1.1.3",
+        "typescript": "^4.4.0-dev.20210705"
+    },
+    "dependencies": {
+        "clsx": "^1.1.1"
+    }
+}

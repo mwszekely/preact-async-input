@@ -1,7 +1,7 @@
 import { Ref, h } from "preact";
-import { forwardElementRef } from "../forward-element-ref";
-import { InputPropsForAnyType, NumberAndDateInputAttributes } from "../prop-types";
-import { Input } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { InputPropsForAnyType, NumberAndDateInputAttributes } from "./prop-types";
+import { Input } from "./input-base";
 
 type RangeExcluded = "accept" | "alt" | "checked" | "dirname" | "formaction" | "formenctype" | "formmethod" | "formnovalidate" | "formtarget" | "height" | "maxlength" | "minlength" | "multiple" | "pattern" | "placeholder" | "readonly" | "required" | "size" | "src" | "width";
 

@@ -1,11 +1,11 @@
 import { h, Ref } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { ProvideId, useProvidedId } from "../provide-id";
-import { usePendingMode } from "../pending-mode";
-import { InputPropsForAnyType } from "../prop-types";
-import { AsyncConvertError, ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
-import { useHasFocus } from "../use-has-focus";
-import { forwardElementRef } from "../forward-element-ref";
+import { ProvideId, useProvidedId } from "./provide-id";
+import { usePendingMode } from "./pending-mode";
+import { InputPropsForAnyType } from "./prop-types";
+import { AsyncConvertError, ProvideAsyncHandlerInfo, useAsyncEventHandler } from "./use-async-event-handler";
+import { useHasFocus } from "./util/use-has-focus";
+import { forwardElementRef } from "./util/forward-element-ref";
 
 export interface InputProps<T> extends Omit<InputPropsForAnyType<T, HTMLInputElement, keyof h.JSX.HTMLAttributes<HTMLInputElement>>, "value" | "onInput"> {
     type: "color" | "date" | "datetime-local" | "email" | "month" | "number" | "password" | "search" | "tel" | "text" | "time" | "url" | "week" | "checkbox" | "radio" | "range",
@@ -78,7 +78,7 @@ export const Input = forwardElementRef(function Input<T = string>(p: InputProps<
             readOnly = true;
     }
 
-    id = useProvidedId("backup", id);
+    id = useProvidedId(id, "backup");
 
     return (
         <ProvideAsyncHandlerInfo pending={pending} error={error} latestConvertedValue={latestConvertedValue} fulfilled={fulfilled} startedTime={startedTime}>

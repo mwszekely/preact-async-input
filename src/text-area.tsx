@@ -1,11 +1,11 @@
 import { h, Ref } from "preact";
-import { forwardElementRef } from "../forward-element-ref";
-import { usePendingMode } from "../pending-mode";
-import { InputPropsForAnyType, TextareaAttributes } from "../prop-types";
-import { ProvideId, useProvidedId } from "../provide-id";
-import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
-import { useHasFocus } from "../use-has-focus";
-import { useLostFocusWhilePending } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { usePendingMode } from "./pending-mode";
+import { InputPropsForAnyType, TextareaAttributes } from "./prop-types";
+import { ProvideId, useProvidedId } from "./provide-id";
+import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "./use-async-event-handler";
+import { useHasFocus } from "./util/use-has-focus";
+import { useLostFocusWhilePending } from "./input-base";
 
 
 export interface TextAreaProps extends InputPropsForAnyType<string, HTMLTextAreaElement, TextareaAttributes> {
@@ -35,7 +35,7 @@ export const TextArea = forwardElementRef(function TextArea(p: TextAreaProps, re
         readOnly ||= (pending && !hasFocus);
 
 
-    id = useProvidedId("backup", id);
+    id = useProvidedId(id, "backup");
 
     return (
         <ProvideId id={id}>

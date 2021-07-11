@@ -1,10 +1,10 @@
 import { Ref, createContext, Fragment, h, RenderableProps } from "preact";
 import { useCallback, useState } from "preact/hooks";
-import { forwardElementRef } from "../forward-element-ref";
-import { InputPropsForAnyType, MultiOptionInputAttributes, MultiSelectInputAttributes } from "../prop-types";
-import { ProvideId, useProvidedId } from "../provide-id";
-import { ProvideAsyncHandlerInfo, useAsyncEventHandler, useIsPending, useLatestValue } from "../use-async-event-handler";
-import { useHasFocus } from "../use-has-focus";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { InputPropsForAnyType, MultiOptionInputAttributes, MultiSelectInputAttributes } from "./prop-types";
+import { ProvideId, useProvidedId } from "./provide-id";
+import { ProvideAsyncHandlerInfo, useAsyncEventHandler, useIsPending, useLatestValue } from "./use-async-event-handler";
+import { useHasFocus } from "./util/use-has-focus";
 
 
 
@@ -31,7 +31,7 @@ export const SelectMulti = forwardElementRef(function SelectMulti(p: RenderableP
         asyncHandler: userOnChange
     });
 
-    id = useProvidedId("backup", id);
+    id = useProvidedId(id, "backup");
 
 
     return (

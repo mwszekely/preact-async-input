@@ -1,6 +1,6 @@
 import { ComponentChildren, createContext, RenderableProps, h } from "preact";
 import { StateUpdater, useCallback, useContext, useLayoutEffect, useRef, useState } from "preact/hooks";
-import { useStableCallback } from "./use-stable-callback";
+import { useStableCallback } from "./util/use-stable-callback";
 
 export const AsyncConvertError = Symbol("AsyncConvertError");
 

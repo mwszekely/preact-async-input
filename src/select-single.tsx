@@ -1,12 +1,12 @@
 import { Ref, createContext, h, RenderableProps } from "preact";
 import { useContext } from "preact/hooks";
-import { forwardElementRef } from "../forward-element-ref";
-import { usePendingMode } from "../pending-mode";
-import { InputPropsForAnyType, SingleOptionInputAttributes, SingleSelectInputAttributes } from "../prop-types";
-import { ProvideId, useProvidedId } from "../provide-id";
-import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
-import { useHasFocus } from "../use-has-focus";
-import { useLostFocusWhilePending } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { usePendingMode } from "./pending-mode";
+import { InputPropsForAnyType, SingleOptionInputAttributes, SingleSelectInputAttributes } from "./prop-types";
+import { ProvideId, useProvidedId } from "./provide-id";
+import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "./use-async-event-handler";
+import { useHasFocus } from "./util/use-has-focus";
+import { useLostFocusWhilePending } from "./input-base";
 
 export interface SelectSingleProps extends Omit<InputPropsForAnyType<string, HTMLSelectElement, SingleSelectInputAttributes>, "onInput"> {
     value: string;
@@ -36,7 +36,7 @@ export const SelectSingle = forwardElementRef(function SelectSingle(p: Renderabl
             disabled = true;
     }
 
-    id = useProvidedId("backup", id);
+    id = useProvidedId(id, "backup");
 
     return (
         <SelectedValueContext.Provider value={pending ? (latestConvertedValue ?? value) : value ?? ""}>

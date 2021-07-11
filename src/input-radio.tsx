@@ -1,9 +1,9 @@
 import { Ref, createContext, h, RenderableProps } from "preact";
 import { useContext } from "preact/hooks";
-import { forwardElementRef } from "../forward-element-ref";
-import { InputPropsForAnyType } from "../prop-types";
-import { ProvideId, useProvidedId } from "../provide-id";
-import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "../use-async-event-handler";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { InputPropsForAnyType } from "./prop-types";
+import { ProvideId, useProvidedId } from "./provide-id";
+import { ProvideAsyncHandlerInfo, useAsyncEventHandler } from "./use-async-event-handler";
 
 
 export interface InputRadioGroupProps extends Pick<h.JSX.HTMLAttributes<HTMLInputElement>, "disabled" | "value" | "name" | "children"> {
@@ -58,7 +58,7 @@ export const InputRadio = forwardElementRef(function InputRadio(p: InputRadioPro
 
     const onInput = useContext(OnInputContext);
 
-    id = useProvidedId("backup", id);
+    id = useProvidedId(id, "backup");
 
     return (
         <ProvideId id={id}>

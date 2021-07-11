@@ -1,8 +1,8 @@
 import { Ref, h } from "preact";
 import { useCallback } from "preact/hooks";
-import { forwardElementRef } from "../forward-element-ref";
-import { InputPropsForAnyType, TextInputAttributes } from "../prop-types";
-import { Input } from "./base";
+import { forwardElementRef } from "./util/forward-element-ref";
+import { InputPropsForAnyType, TextInputAttributes } from "./prop-types";
+import { Input } from "./input-base";
 
 
 
