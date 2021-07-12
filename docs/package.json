@@ -38,6 +38,7 @@
         "typescript": "^4.4.0-dev.20210705"
     },
     "dependencies": {
+        "@js-temporal/polyfill": "^0.1.0",
         "clsx": "^1.1.1"
     }
 }

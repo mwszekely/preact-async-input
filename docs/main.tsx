@@ -1,23 +1,9 @@
 import { h, render } from 'preact';
 import { useCallback, useState } from 'preact/hooks';
-import { Temporal } from 'proposal-temporal';
 import { useProvidedId, Button, Input, InputNumber, InputMonth, InputRange, InputCheckbox, InputColor, InputDate, InputDateTime, InputEmail, InputRadio, InputRadioGroup, OptionMulti, OptionSingle, ProvideId, SelectMulti, SelectSingle, SetPendingMode, TextArea } from "..";
 
+import { Temporal } from "@js-temporal/polyfill"
 
-
-
-
-
-// @ts-ignore
-//import css from "../dist/assets/index.css";
-//import { addCssToHead } from './packing-utils';
-
-
-//addCssToHead(css);
-
-function Canvas() {
-
-}
 
 let timeT = 2000;
 
